@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% block title %}
+Payments
+{% endblock %}
+{% block content %}
+<style>
+	body {
+		background-color: black;
+		color: white;
+	}
+
+	#tmp2,
+	#tmp3 {
+		background-color: black;
+	}
+
+
+	.green {
+		color: greenyellow;
+		font-weight: 680;
+	}
+
+	@media(max-width:800px) {
+		.mobile {
+			padding-top: 40px;
+		}
+	}
+</style>
+
+<div style="height: 50px;">
+
+</div>
+
+{% if session['loggedin'] %}
+
+{% if foo == 0 %}
+
+<center>
+	<h1><b><u>PAYMENTS</u></b></h1><br>
+	<h3>For any queries related to payments, please contact <a
+			href="mailto:payments@solaraura.com">payments@solaraura.com</a></h3>
+	<h3>There is no pending payment to be done. Checkout the Residential and/or Commercial pages to avail our services.
+	</h3>
+</center>
+
+{% else %}
+
+
+{% if foo == 1 %}
+{% set typeOfService = "Residential" %}
+{% elif foo == -1 %}
+{% set typeOfService = "Commercial" %}
+{% endif %}
+
+
+<div class="container rounded bg-white">
+	<div id="tmp2" class="row d-flex justify-content-center pb-5">
+		<div class="col-sm-5 col-md-5 ml-1">
+			<div class="py-4 d-flex flex-row">
+				<h5><span class="fa fa-check-square-o"></span><b>Payments</b>
+			</div>
+			<h4 class="green">$20.00</h4>
+			<h4>Visit and Inspection Fee</h4>
+			<div class="d-flex pt-2">
+				<div>
+					<p><b>
+							{{ typeOfService }} Request
+						</b></p>
+				</div>
+			</div>
+			<p>In case SolarAura isn't able to reach out to you, the refund will be made to the original account
+				within 2 weeks.
+			<div>
+				<div id="tmp3" class="p-2">If transaction fails, then reach out to us at payments@solaraura.com</div>
+			</div>
+			<br>
+			<div>
+				<button id="buy_now_btn" class="btn btn-primary btn-lg">Proceed</button>
+			</div>
+			<script src="https://js.stripe.com/v3/"></script>
+			{#
+			<script>
+				const checkout_public_key = '{{checkout_public_key}}';
+				const checkout_session_id = '{{checkout_session_id}}';
+			</script>
+			#}
+			<script src="{{ url_for('static', filename='script-ajax.js') }}"></script>
+			<hr>
+		</div>
+		<div id="tmp2" class="col-sm-3 col-md-4 offset-md-1 mobile">
+			<br><br>
+			<br>
+			<div id="tmp2" class="bg-light rounded d-flex flex-column">
+				<div id="tmp2" class="p-2 ml-3">
+					<h4>Order Recap</h4>
+				</div>
+				<div id="tmp2" class="p-2 d-flex">
+					<div class="col-8">Cost</div>
+					<div class="ml-auto">$20</div>
+				</div>
+
+				<div class="border-top px-4 mx-3"></div>
+				<div id="tmp2" class="p-2 d-flex">
+					<div class="col-8">Tax</div>
+					<div class="ml-auto">$0.00</div>
+				</div>
+				<div id="tmp2" class="p-2 d-flex">
+					<div class="col-8">Discount</div>
+					<div class="ml-auto">-$0.00</div>
+				</div>
+
+				<div class="border-top px-4 mx-3"></div>
+				<div id="tmp2" class="p-2 d-flex pt-3">
+					<div class="col-8"><b>Total</b></div>
+					<div class="ml-auto"><b class="green">$20.00</b></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% else %}
+<center>
+	<h1><b><u>PAYMENTS</u></b></h1><br>
+	<h3>For any queries related to payments, please contact <a
+			href="mailto:payments@solaraura.com">payments@solaraura.com</a></h3>
+
+</center>
+
+<marquee scrollamount="20">
+	<h1 style="color:beige">Please Login to View Payment Details!!</h1>
+</marquee>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		{% block title %}
+
+		{% endblock %}
+	</title>
+	<link rel="icon" type="image/gif/png" href="/static/icon.jpg">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+		integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+		crossorigin="anonymous"></script>
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<link rel="stylesheet" href="static/footer.css">
+	<link rel="stylesheet" type="text/css"
+		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+	<style>
+		@media (max-width:450px) {
+			#header1 {
+				font-size: 18px;
+			}
+		}
+	</style>
+
+</head>
+
+<body></br></br>
+	<nav class="navbar navbar-dark bg-dark fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="{{ url_for('home_page') }}">
+				<h2 id="header1" style="font-family: cursive;">SolarAura</h2>
+			</a>
+			<div>
+				<ul class="nav justify-content-end">
+					{% if session['loggedin'] %}
+
+					<li class="nav-item">
+						<a class="flex-sm-fill text-sm-center nav-link active" href="#">
+							<h3 id="header1" style="color:antiquewhite;">
+								<pre>{{session.fname}}'s Account   &bull;</pre>
+							</h3>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="flex-sm-fill text-sm-center nav-link active" href="{{ url_for('logout') }}">
+							<h3 id="header1" style="color:antiquewhite;">
+								<pre>  Logout  </pre>
+							</h3>
+						</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="flex-sm-fill text-sm-center nav-link active" href="{{ url_for('login') }}">
+							<h3 id="header1" style="color:antiquewhite;">Login</h3>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="flex-sm-fill text-sm-center nav-link active" href="{{ url_for('register') }}">
+							<h3 id="header1" style="color:antiquewhite;">Register</h3>
+						</a>
+					</li>
+					{% endif %}
+					<li>
+						<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+							data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+
+						<div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
+							aria-labelledby="offcanvasDarkNavbarLabel" data-bs-scroll="true">
+							<div class="offcanvas-header">
+								<h1 class="offcanvas-title" id="offcanvasDarkNavbarLabel">SolarAura</h1>
+								<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+									aria-label="Close"></button>
+							</div>
+							<div class="offcanvas-body">
+								<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ url_for('about') }}">
+											<h3>About Us</h3>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page"
+											href="{{ url_for('residential') }}">
+											<h3>Residential</h3>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page"
+											href="{{ url_for('commercial') }}">
+											<h3>Commercial</h3>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ url_for('payment') }}">
+											<h3>Payments</h3>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ url_for('careers') }}">
+											<h3>Careers</h3>
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link active" aria-current="page" href="{{ url_for('contact') }}">
+											<h3>Contact Us</h3>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+	</nav>
+	{% block content %}
+
+	{% endblock %}
+	<footer style="margin-left: 5px; margin-right: 5px;" class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="footer-col">
+					<h4>Company</h4>
+					<ul>
+						<li><a href="{{ url_for('about') }}">About Us</a></li>
+						<li><a href="{{ url_for('residential') }}">Residential Services</a></li>
+						<li><a href="{{ url_for('commercial') }}">Commercial Services</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>Get Help</h4>
+					<ul>
+						<li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+						<li><a href="#">Order Status</a></li>
+						<li><a href="{{ url_for('payment') }}">Payments</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>Others</h4>
+					<ul>
+						<li><a href="{{ url_for('careers') }}">Careers (We are hiring!!)</a></li>
+						<li><a href="#">Partners</a></li>
+						<li><a href="#">Licenses</a></li>
+					</ul>
+				</div>
+				<div class="footer-col">
+					<h4>Follow Us</h4>
+					<div class="social-links">
+						<a href="#"><i class="fab fa-facebook-f"></i></a>
+						<a href="#"><i class="fab fa-twitter"></i></a>
+						<a href="#"><i class="fab fa-instagram"></i></a>
+						<a href="#"><i class="fab fa-linkedin-in"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script>
+		window.embeddedChatbotConfig = {
+			chatbotId: "HTtZ45f5EAv7h2J799wr0",
+			domain: "www.chatbase.co"
+		}
+	</script>
+	<script src="https://www.chatbase.co/embed.min.js" chatbotId="HTtZ45f5EAv7h2J799wr0" domain="www.chatbase.co" defer>
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+body {
+	background-color: black;
+	color: white;
+	font-size: 17px;
+}
+
+a:link {
+	color: white;
+	text-decoration: none;
+}
+
+.container1 {
+	width: 80%;
+	background-color: #92140C;
+	margin: 40px;
+	padding: 20px;
+	border-radius: 30px;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+	transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.container1:hover {
+	transform: scale(1.02);
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.box {
+	width: 50%;
+	margin-bottom: 20px;
+}
+
+#box1,
+#box2 {
+	display: flex;
+}
+#space{
+	width: 100%;
+}
+
+@media (max-width:700px) {
+	.box {
+		width: 100%;
+	}
+
+	#box1,
+	#box2 {
+		flex-direction: column;
+	}
+}

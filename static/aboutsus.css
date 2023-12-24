@@ -1,0 +1,45 @@
+body{
+	background-color: black;
+}
+#box1 {
+	display: flex;
+	background-color: black;
+	color: beige;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#box11 {
+	width: 50%;
+	font-size: 25px;
+	padding: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#box12 {
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#img1{
+	width: 60%;
+	border-radius: 20px;
+}
+
+@media (max-width:1100px) {
+	#box1 {
+		flex-direction: column;
+	}
+
+	#box11,
+	#box12 {
+		width: 100%;
+	}
+
+	#img1{
+		width: 80%;
+	}
+}

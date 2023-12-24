@@ -1,0 +1,9 @@
+#registerForm {
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 20px;
+	align-items: center;
+	background-image:  url("/static/register_bg.webp");
+	background-size: cover;
+	background-attachment: fixed;
+}

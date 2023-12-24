@@ -1,0 +1,265 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,400);
+	@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
+
+	body {
+		background-color: black;
+	}
+
+	#box1 {
+		display: flex;
+		background-color: black;
+		color: white;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+
+	#box11 {
+		width: 50%;
+		font-size: 25px;
+		padding: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#box12 {
+		width: 50%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#img1 {
+		width: 80%;
+		border-radius: 20px;
+	}
+
+	#box2 {
+		height: 550px;
+		display: flex;
+		color: black;
+		margin-bottom: 50px;
+	}
+
+	#box21 {
+		width: 35%;
+		font-size: 25px;
+		padding: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background-color: #FFFBF0;
+	}
+
+	#box22 {
+		width: 65%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		background: linear-gradient(to right, #FFFBF0 50%, black 50%);
+	}
+
+	#img2 {
+		width: 80%;
+	}
+
+	#box3 {
+		display: flex;
+		color: black;
+		margin-top: 50px;
+		margin-bottom: 50px;
+	}
+
+	#box31 {
+		width: 40%;
+		font-size: 25px;
+		padding: 30px;
+
+		justify-content: center;
+		align-items: center;
+		background-color: #FFFBF0;
+	}
+
+	#box32 {
+		width: 60%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#img3 {
+		width: 100%;
+	}
+
+
+	@media (max-width:500px) {
+		#outsideGoodStuff {
+			display: none;
+		}
+	}
+
+	#solarjourneydiv {
+		display: flex;
+	}
+
+	@media (max-width:900px) {
+		#solarjourneydiv {
+			flex-direction: column;
+		}
+	}
+
+	@media (max-width:900px) {
+		#box1 {
+			flex-direction: column;
+		}
+
+		#box11,
+		#box12 {
+			width: 100%;
+		}
+
+		#img1 {
+			width: 60%;
+		}
+
+		#box2 {
+			flex-direction: column;
+		}
+
+		#box21 {
+			width: 100%;
+			background-color: black;
+			color: beige;
+		}
+
+		#box22 {
+			width: 100%;
+			background: none;
+		}
+
+		#img2 {
+			width: 60%;
+		}
+
+		#box3 {
+			flex-direction: column;
+		}
+
+		#box31,
+		#box32 {
+			width: 100%;
+		}
+
+		#img3 {
+			width: 80%;
+		}
+	}
+
+	#testimonial {
+		display: flex;
+		text-align: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	figure.snip1390 {
+		font-family: 'Roboto', Arial, sans-serif;
+		position: relative;
+		overflow: hidden;
+		margin: 10px;
+		min-width: 230px;
+		max-width: 315px;
+		width: 100%;
+		color: #000000;
+		text-align: center;
+		font-size: 16px;
+		background-color: #2C3447;
+		padding: 30px;
+		background-image: linear-gradient(-25deg, rgba(0, 0, 0, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		border-radius: 20px;
+	}
+
+	figure.snip1390 *,
+	figure.snip1390 *:before,
+	figure.snip1390 *:after {
+		-webkit-box-sizing: border-box;
+		box-sizing: border-box;
+		-webkit-transition: all 0.35s ease;
+		transition: all 0.35s ease;
+	}
+
+	figure.snip1390 figcaption {
+		width: 100%;
+	}
+
+	figure.snip1390 h2,
+	figure.snip1390 h4,
+	figure.snip1390 blockquote {
+		margin: 0;
+	}
+
+	figure.snip1390 h2,
+	figure.snip1390 h4 {
+		font-weight: 300;
+	}
+
+	figure.snip1390 h2 {
+		color: #ffffff;
+	}
+
+	figure.snip1390 h4 {
+		color: #a6a6a6;
+	}
+
+	figure.snip1390 blockquote {
+		font-size: 1em;
+		padding: 45px 20px 40px 50px;
+		margin-top: 30px;
+		background-color: #ffffff;
+		border-radius: 5px;
+		box-shadow: inset -1.4px -1.4px 2px rgba(0, 0, 0, 0.3);
+		text-align: left;
+		position: relative;
+	}
+
+	figure.snip1390 blockquote:before {
+		font-family: 'FontAwesome';
+		content: "\201C";
+		position: absolute;
+		font-size: 70px;
+		opacity: 0.25;
+		font-style: normal;
+		top: 0px;
+		left: 20px;
+	}
+
+	figure.snip1390 .profile {
+		width: 100px;
+		border-radius: 50%;
+		display: inline-block;
+		box-shadow: 3px 3px 20px rgba(0, 0, 0, 0.4);
+		margin-bottom: 10px;
+		border: solid 5px #A6A57A;
+	}
+
+	@media (max-width:1100px) {
+		#testimonial {
+			flex-direction: column;
+		}
+
+		figure.snip1390 {
+			max-width: 100%;
+			width: 80%;
+		}
+	}
+	#try1 {
+		font-size: 20px;
+		color: white;
+		display: none;
+	}
+
+	#try2:hover #try1 {
+		display: block;
+	}

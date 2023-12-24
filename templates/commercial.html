@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}
+Commercial
+{% endblock %}
+{% block content %}
+
+<link rel="stylesheet" href="/static/commercial.css">
+
+<div style="background-color: black; height: 50px;">
+</div>
+
+<div id="top">
+<h1><b><u>COMMERCIAL SERVICES</u></b></h1>
+
+
+{% if session['loggedin'] %}
+
+	<div id="location1">
+		<div id="location11">
+			<span id="location">Click the button to get your location.</span>
+			<button id="getLocation" class="btn btn-success">Get Location</button><br><br><br>
+			<span id="note">NOTE: A $20 visit & inspection fee needs to be paid.
+				In case SolarAura isn't able to reach out to you, the refund will be made to the original account
+				within 2 weeks.
+				Further budget will be discussed on visit.
+			</span>
+		</div>
+		<div id="map"></div>
+	</div>
+
+</div>
+
+<form class="my-form" action="{{ url_for('commercial') }}" method="post">
+	<input type="hidden" id="latitude" name="latitude">
+	<input type="hidden" id="longitude" name="longitude">
+	<div class="container">
+		<ul id="ul1">
+			<li>
+				<div class="grid grid-2">
+					<input type="text" name="bizName" placeholder="Business Name" required>
+					<input type="text" name="contactName" placeholder="Contact Person" required>
+				</div>
+			</li>
+			<li>
+				<div class="grid grid-2">
+					<input type="text" name="bizType" placeholder="Type of Business" required>
+					<input type="text" name="phone" placeholder="Phone" required>
+				</div>
+			</li>
+			<li>
+				<div class="grid grid-2">
+					<input type="text" name="energy" placeholder="Energy Needs (kWh/month)" required>
+					<input type="text" name="roofArea" placeholder="Approx Roof Size (sq. ft.)" required>
+				</div>
+			</li>
+			<li>
+				<textarea name="address" placeholder="Address"></textarea>
+			</li>
+			<li>
+				<textarea name="comments" placeholder="Additional Comments..."></textarea>
+			</li>
+
+			<li>
+				<input type="checkbox" id="terms">
+				<label for="terms">I verify that the details provided above are correct.</label>
+			</li>
+			<li>
+				<div class="grid grid-3">
+					<div class="required-msg">REQUIRED FIELDS</div>
+					<button class="btn-grid" type="submit" disabled>
+						<span class="back">
+							<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/email-icon.svg" alt="">
+						</span>
+						<span class="front">SUBMIT</span>
+					</button>
+					<button class="btn-grid" type="reset" disabled>
+						<span class="back">
+							<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/eraser-icon.svg" alt="">
+						</span>
+						<span class="front">RESET</span>
+					</button>
+				</div>
+			</li>
+		</ul>
+	</div>
+</form>
+
+<script>
+	document.getElementById('getLocation').addEventListener('click', function () {
+		if ("geolocation" in navigator) {
+			var locationTimeout = setTimeout(function () {
+				var inputField1 = document.getElementById("latitude");
+				var inputField2 = document.getElementById("longitude");
+				inputField1.value = "N.A.";
+				inputField2.value = "N.A.";
+				document.getElementById('location').innerText = "Geolocation request timed out.";
+				navigator.geolocation.clearWatch(geolocationWatch);
+			}, 5000);
+
+			var geolocationWatch = navigator.geolocation.getCurrentPosition(function (position) {
+				clearTimeout(locationTimeout);
+				var latitude = position.coords.latitude;
+				var longitude = position.coords.longitude;
+				var inputField1 = document.getElementById("latitude");
+				inputField1.value = latitude;
+				var inputField2 = document.getElementById("longitude");
+				inputField2.value = longitude;
+				fetch('/get_location', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ latitude: latitude, longitude: longitude })
+				})
+					.then(response => response.json())
+					.then(data => {
+						document.getElementById('location').innerText = "Your location is: " + data.location;
+
+						var map = L.map('map').setView([latitude, longitude], 13);
+						L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+							maxZoom: 19,
+						}).addTo(map);
+
+						var marker = L.marker([latitude, longitude]).addTo(map);
+						marker.bindPopup("You are here!").openPopup();
+					})
+					.catch(error => {
+						console.error('Error:', error);
+					});
+			});
+		} else {
+			var inputField1 = document.getElementById("latitude");
+			inputField1.value = "N.A.";
+			var inputField2 = document.getElementById("longitude");
+			inputField2.value = "N.A.";
+			document.getElementById('location').innerText = "Geolocation is not supported by your browser.";
+		}
+	});
+
+</script>
+<script>
+	const checkbox = document.querySelector('.my-form input[type="checkbox"]');
+	const btns = document.querySelectorAll(".my-form button");
+
+	checkbox.addEventListener("change", function () {
+		const checked = this.checked;
+		for (const btn of btns) {
+			checked ? (btn.disabled = false) : (btn.disabled = true);
+		}
+	});
+</script>
+
+{% else %}
+
+<marquee scrollamount="20">
+	<h1 style="color:beige">Please Login to Proceed Further!!</h1>
+</marquee>
+
+{% endif %}
+
+{% endblock %}
